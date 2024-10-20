@@ -18,8 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR ${HOMEDIR}
 
-# 复制文件
-RUN git clone https://github.com/aigem/edgeTTS-openai-api.git ${HOMEDIR}
+# git clone 到指定目录下
+RUN git clone https://github.com/aigem/edgeTTS-openai-api.git
 
 # 给所有 .sh 文件添加执行权限
 RUN chmod +x ${HOMEDIR}/src/*.sh \
