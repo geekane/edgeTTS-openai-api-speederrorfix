@@ -1,8 +1,6 @@
 #!/bin/sh
 
-echo "API_KEY: ${API_KEY}"
-
-# 替换 .env 文件中的 API_KEY。如果 API_KEY 有内容，则替换。
+# 替换 .env 文件中的 API_KEY。如果 API_KEY 环境变量有内容，则替换。
 if [ -n "$API_KEY" ]; then
     sed -i "s|API_KEY=your_api_key_here|API_KEY=$API_KEY|g" $HOMEDIR/edgeTTS-openai-api/src/api/.env
 fi
