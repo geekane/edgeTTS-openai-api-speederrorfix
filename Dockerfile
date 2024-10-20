@@ -1,8 +1,5 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs20
 
-# 禁用 Docker 缓存
-ARG CACHEBUST=1
-
 ENV USER=pn \
     HOMEDIR=/home/pn \
     PORT=7860 \
@@ -20,6 +17,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${HOMEDIR}
+
+# 禁用 Docker 缓存，使用当时时间戳
+ARG CACHEBUST=$(date +%s)
 
 # git clone 到指定目录下
 RUN git clone https://github.com/aigem/edgeTTS-openai-api.git
