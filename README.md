@@ -14,7 +14,11 @@
 
 ## 安装
 
-### 方法 1: 打开 Huggingface 页面，点击 `复制空间` 按钮，直接部署。
+### 方法 1: 
+打开 Huggingface 页面，点击 `复制空间` 按钮，直接部署。
+
+[Huggingface 部署链接](https://huggingface.co/spaces/fuliai/edgetts-api-openai)
+
 最简单的方法。
 
 ### 方法 2: 复制Dockerfile文件内容，在Huggingface上新建空间后，新建Dockerfile文件，粘贴内容,保存就`部署`了。

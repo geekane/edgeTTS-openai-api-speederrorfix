@@ -1,5 +1,8 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs20
 
+# 添加 CACHEBUST 参数
+ARG CACHEBUST=1
+
 ENV USER=pn \
     HOMEDIR=/home/pn \
     PORT=7860 \
@@ -18,11 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR ${HOMEDIR}
 
-# 禁用 Docker 缓存，使用当时时间戳
-ARG CACHEBUST=$(date +%s)
-
-# git clone 到指定目录下
-RUN git clone https://github.com/aigem/edgeTTS-openai-api.git
+# 使用 CACHEBUST 参数来强制更新
+RUN git clone https://github.com/aigem/edgeTTS-openai-api.git && echo "Cache bust: ${CACHEBUST}"
 
 # 给所有 .sh 文件添加执行权限
 RUN chmod +x ${HOMEDIR}/edgeTTS-openai-api/src/*.sh \
