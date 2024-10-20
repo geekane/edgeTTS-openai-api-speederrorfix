@@ -9,7 +9,8 @@ ENV USER=pn \
     SSHX_INSTALL=true \
     OPENAI_EDGE_TTS_INSTALL=true
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN --mount=type=secret,id=apikey,mode=0444,required=true \
+    apt-get update && apt-get install -y --no-install-recommends \
     apt-utils \
     build-essential \
     libpq-dev \
@@ -22,16 +23,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR ${HOMEDIR}
 
 # 使用 CACHEBUST 参数来强制更新
-RUN git clone https://github.com/aigem/edgeTTS-openai-api.git && echo "Cache bust: ${CACHEBUST}"
-
-# 给所有 .sh 文件添加执行权限
-RUN chmod +x ${HOMEDIR}/edgeTTS-openai-api/src/*.sh \
+RUN git clone https://github.com/aigem/edgeTTS-openai-api.git \
+    && chmod +x ${HOMEDIR}/edgeTTS-openai-api/src/*.sh \
     && ls -la ${HOMEDIR}/edgeTTS-openai-api/src \
-    && ls -la ${HOMEDIR}/edgeTTS-openai-api
-
-# 运行 setup.sh、sshx.sh 和 remix.sh
-RUN --mount=type=secret,id=apikey,mode=0444,required=true \
-    ${HOMEDIR}/edgeTTS-openai-api/src/setup.sh \
+    && ls -la ${HOMEDIR}/edgeTTS-openai-api \
+    && ${HOMEDIR}/edgeTTS-openai-api/src/setup.sh \
     && if [ "$SSHX_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/sshx.sh; fi \
     && if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/openai-edge-tts.sh; fi
 

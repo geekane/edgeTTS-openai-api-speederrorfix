@@ -1,11 +1,8 @@
 #!/bin/sh
 
-# 检查REMIX_INSTALL是否为true
-if [ "$REMIX_INSTALL" = true ]; then
-    # 使用 PM2 启动 Remix 应用，并传递 PORT 环境变量
-    cd ${HOMEDIR}/${REMIX_NAME}
-    pm2 start ecosystem.config.cjs
-    pm2 save
+# 替换 .env 文件中的 API_KEY。如果 $(cat /run/secrets/apikey) 有内容，则替换。
+if [ -n "$(cat /run/secrets/apikey)" ]; then
+    sed -i "s|API_KEY=your_api_key_here|API_KEY=$(cat /run/secrets/apikey)|g" $HOMEDIR/edgeTTS-openai-api/src/api/.env
 fi
 
 # 检查 OPENAI_EDGE_TTS_INSTALL是否为true
@@ -19,9 +16,6 @@ if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then
 fi
 
 cd ${HOMEDIR}
-
-# 列出所有运行的进程
-pm2 list
 
 # 只输出日志
 pm2 logs --lines 50
