@@ -27,7 +27,7 @@ HOME_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenAI Edge TTS API</title>
+    <title>OpenAI通用的微软Edge TTS API</title>
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto; }
         h1 { color: #333; }
@@ -35,7 +35,7 @@ HOME_TEMPLATE = """
     </style>
 </head>
 <body>
-    <h1>欢迎使用 OpenAI Edge TTS API</h1>
+    <h1>OpenAI通用的微软Edge TTS API</h1>
     <p>这是一个基于 Edge TTS 的 OpenAI TTS API 替代品。</p>
     <h2>API 端点：</h2>
     <ul>
@@ -46,17 +46,10 @@ HOME_TEMPLATE = """
     </ul>
     <h2>使用示例：</h2>
     <pre>
-curl http://localhost:{{ port }}/v1/audio/speech \
-  -H "Authorization: Bearer $API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "tts-1",
-    "input": "Hello world!",
-    "voice": "alloy"
-  }' \
-  --output speech.mp3
+    <p>
+    <a href="https://www.youtube.com/@all.ai.">视频教程</a>
+    <a href="https://github.com/aigem/edgeTTS-openai-api">更多信息请参考项目说明</a></p>
     </pre>
-    <p>更多信息请参考 API 文档。</p>
 </body>
 </html>
 """

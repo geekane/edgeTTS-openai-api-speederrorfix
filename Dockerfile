@@ -1,5 +1,8 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs20
 
+# 禁用 Docker 缓存
+ARG CACHEBUST=1
+
 ENV USER=pn \
     HOMEDIR=/home/pn \
     PORT=7860 \
@@ -30,8 +33,7 @@ RUN chmod +x ${HOMEDIR}/edgeTTS-openai-api/src/*.sh \
 RUN --mount=type=secret,id=apikey,mode=0444,required=true \
     ${HOMEDIR}/edgeTTS-openai-api/src/setup.sh \
     && if [ "$SSHX_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/sshx.sh; fi \
-    && if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/openai-edge-tts.sh; fi \
-    && echo $(cat /run/secrets/apikey)
+    && if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/openai-edge-tts.sh; fi
 
 # 暴露 Remix 端口
 EXPOSE ${PORT}
