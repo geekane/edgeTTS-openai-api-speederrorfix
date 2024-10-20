@@ -5,6 +5,8 @@ if [ -n "$API_KEY" ]; then
     sed -i "s|API_KEY=your_api_key_here|API_KEY=$API_KEY|g" $HOMEDIR/edgeTTS-openai-api/src/api/.env
 fi
 
+cat $HOMEDIR/edgeTTS-openai-api/src/api/.env
+
 # 检查 OPENAI_EDGE_TTS_INSTALL是否为true
 if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then
     cd ${HOMEDIR}/edgeTTS-openai-api/src/api    
