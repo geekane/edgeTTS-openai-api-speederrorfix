@@ -9,8 +9,7 @@ ENV USER=pn \
     SSHX_INSTALL=true \
     OPENAI_EDGE_TTS_INSTALL=true
 
-RUN --mount=type=secret,id=apikey,mode=0444,required=true \
-    apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils \
     build-essential \
     libpq-dev \
@@ -35,4 +34,4 @@ RUN git clone https://github.com/aigem/edgeTTS-openai-api.git \
 EXPOSE ${PORT}
 
 # 在启动时设置 API_KEY 环境变量
-ENTRYPOINT API_KEY=$(cat /run/secrets/apikey) && /home/pn/edgeTTS-openai-api/src/startup.sh
+ENTRYPOINT /home/pn/edgeTTS-openai-api/src/startup.sh
