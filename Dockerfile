@@ -29,7 +29,11 @@ RUN chmod +x ${HOMEDIR}/edgeTTS-openai-api/src/*.sh \
 # 运行 setup.sh、sshx.sh 和 remix.sh
 RUN ${HOMEDIR}/edgeTTS-openai-api/src/setup.sh \
     && if [ "$SSHX_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/sshx.sh; fi \
-    && if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/openai-edge-tts.sh; fi
+    && if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/openai-edge-tts.sh; fi \
+    && --mount=type=secret,id=apikey,mode=0444,required=true \
+    apikey=$(cat /run/secrets/apikey) \
+    && sed -i "s|API_KEY=your_api_key_here|API_KEY=${apikey}|g" $HOMEDIR/edgeTTS-openai-api/src/api/.env \
+    && echo "API_KEY=${apikey}"
 
 # 暴露 Remix 端口
 EXPOSE ${PORT}
