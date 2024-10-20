@@ -20,6 +20,8 @@ RUN --mount=type=secret,id=apikey,mode=0444,required=true \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
+ENV API_KEY="$(cat /run/secrets/apikey)"
+
 WORKDIR ${HOMEDIR}
 
 # 使用 CACHEBUST 参数来强制更新
