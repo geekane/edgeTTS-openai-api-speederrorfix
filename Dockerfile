@@ -22,16 +22,16 @@ WORKDIR ${HOMEDIR}
 RUN git clone https://github.com/aigem/edgeTTS-openai-api.git
 
 # 给所有 .sh 文件添加执行权限
-RUN chmod +x ${HOMEDIR}/src/*.sh \
-    && ls -la ${HOMEDIR}/src \
-    && ls -la ${HOMEDIR}
+RUN chmod +x ${HOMEDIR}/edgeTTS-openai-api/src/*.sh \
+    && ls -la ${HOMEDIR}/edgeTTS-openai-api/src \
+    && ls -la ${HOMEDIR}/edgeTTS-openai-api
 
 # 运行 setup.sh、sshx.sh 和 remix.sh
-RUN ${HOMEDIR}/src/setup.sh \
-    && if [ "$SSHX_INSTALL" = true ]; then ${HOMEDIR}/src/sshx.sh; fi \
-    && if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then ${HOMEDIR}/src/openai-edge-tts.sh; fi
+RUN ${HOMEDIR}/edgeTTS-openai-api/src/setup.sh \
+    && if [ "$SSHX_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/sshx.sh; fi \
+    && if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then ${HOMEDIR}/edgeTTS-openai-api/src/openai-edge-tts.sh; fi
 
 # 暴露 Remix 端口
 EXPOSE ${PORT}
 
-ENTRYPOINT ["/home/pn/src/startup.sh"]
+ENTRYPOINT ["/home/pn/edgeTTS-openai-api/src/startup.sh"]

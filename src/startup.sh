@@ -10,11 +10,11 @@ fi
 
 # 检查 OPENAI_EDGE_TTS_INSTALL是否为true
 if [ "$OPENAI_EDGE_TTS_INSTALL" = true ]; then
-    cd ${HOMEDIR}/openai-edge-tts
+    cd ${HOMEDIR}/edgeTTS-openai-api/src/api    
     # 先尝试删除已存在的实例
     pm2 delete openai-edge-tts 2>/dev/null || true
     # 启动新的实例
-    pm2 start python --name openai-edge-tts -- ${HOMEDIR}/openai-edge-tts/app/server.py
+    pm2 start python --name openai-edge-tts -- ${HOMEDIR}/edgeTTS-openai-api/src/api/app/server.py
     pm2 save
 fi
 
