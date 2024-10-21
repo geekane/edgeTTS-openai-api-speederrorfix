@@ -21,6 +21,9 @@
 
 最简单的方法。
 
+视频教程 [B站](https://www.bilibili.com/video/BV1M8yiYNEkj/)
+![img](https://raw.githubusercontent.com/aigem/edgeTTS-openai-api/refs/heads/main/%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E5%BE%AE%E8%BD%AFEdgeTTS%2C%E9%80%82%E9%85%8Dopenai%E8%AF%AD%E9%9F%B3api%E6%8E%A5%E5%8F%A3%EF%BC%8C%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B-%E5%B0%81%E9%9D%A2.jpg)
+
 ### 方法 2: 复制Dockerfile文件内容，在Huggingface上新建空间后，新建Dockerfile文件，粘贴内容,保存就`部署`了。
 
 ### 方法 3: 本地安装
@@ -83,6 +86,9 @@ curl http://localhost:5050/v1/models \
 - `DEFAULT_SPEED`: 默认语音速度(默认: 1.0)
 - `DEFAULT_LANGUAGE`: 默认语言(默认: 'en-US')
 - `REQUIRE_API_KEY`: 是否要求 API 密钥认证(默认: true)
+
+## Todo
+- 增加HF环境变量设置APIKEY
 
 ## 贡献
 
