@@ -87,8 +87,10 @@ curl http://localhost:5050/v1/models \
 - `DEFAULT_LANGUAGE`: 默认语言(默认: 'en-US')
 - `REQUIRE_API_KEY`: 是否要求 API 密钥认证(默认: true)
 
-## Todo
-- 增加HF环境变量设置APIKEY
+## 待办事项
+
+- 增加 Hugging Face 空间环境变量设置 API_KEY
+- 开发用户友好的 Web 界面
 
 ## 贡献
 
